@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Si llegamos hasta acá, ninguna validación hizo "return": todo está bien.
-        alert('¡Formulario enviado con éxito! Gracias por comunicarte con el Recetario Web.');
+        alert('¡Formulario enviado con éxito! Gracias por comunicarte con el recetario de Ideas para vos.');
         
         // reset() deja todos los campos como al principio, listos para otro mensaje.
         formulario.reset();
