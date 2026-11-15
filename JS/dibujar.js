@@ -26,8 +26,8 @@ export function dibujarRecetas(recetas, contenedor) {
             <img src="${receta.imagen}" alt="${receta.altImagen}" loading="lazy">
             <div class="tarjeta-info">
                 <h2>${receta.titulo}</h2>
-                <span class="campo-cocina">${receta.campoCocina}</span>
-                <span class="campo-detalle">${receta.campoDetalle}</span>
+                <span class="tarjeta-subtitulo">${receta.campoCocina}</span>
+                <span class="tarjeta-subtitulo2">${receta.campoDetalle}</span>
             </div>
         `;
         // appendChild agrega la card terminada dentro del contenedor, y recién ahí se ve.
@@ -47,7 +47,7 @@ export function dibujarMensaje(texto, contenedor) {
 // Ojo: esta función solo DIBUJA el botón; qué hace al hacerle clic lo decide app.js.
 export function dibujarErrorConReintento(contenedor, mensajeError) {
     console.error('Detalle del error:', mensajeError);
-    
+
     contenedor.innerHTML = `
         <div class="contenedor-error">
             <p class="texto-error">
