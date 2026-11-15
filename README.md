@@ -13,15 +13,15 @@ Trabajo Práctico Evaluativo final de **Diseño Web** · ISFT N° 194 · Tecnica
 ### Estructura de archivos
 
 ```
-TPFinalAPI/
+TP-Dise-o-Web/
 ├── index.html         → Inicio: galería de recetas
 ├── contact.html       → Formulario de contacto
 ├── about.html         → Equipo y proyecto
 ├── README.md
-├── CSS/
+├── css/
 │   └── styles.css      → Estilos de las 3 páginas
 ├── img/                → Fotos de los integrantes e imagen del formulario
-└── js/
+└── JS/
     ├── app.js          → Punto de entrada: arma la página de inicio y el buscador
     ├── pedirDatos.js   → Único archivo que habla con la API (fetch)
     ├── Receta.js       → Clase que modela los datos de cada receta
