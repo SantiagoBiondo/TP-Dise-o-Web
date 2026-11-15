@@ -18,7 +18,7 @@ export default class Receta {
         this.campoCocina = datos.cuisine || 'Internacional';
         // Armamos un solo texto con dificultad, minutos de preparación y puntaje.
         // Las comillas invertidas (`) permiten meter variables con ${...}.
-        this.campoDetalle = ${datos.difficulty} · Prep: ${datos.prepTimeMinutes} min · ⭐ ${datos.rating};
+        this.campoDetalle = `${datos.difficulty} · Prep: ${datos.prepTimeMinutes} min · ⭐ ${datos.rating}`;
 
         // Texto alternativo (alt) para la imagen: lo leen los lectores de pantalla
         // y aparece si la foto no carga. Si la API manda el tipo de comida
@@ -26,6 +26,6 @@ export default class Receta {
         const tipoComida = Array.isArray(datos.mealType) && datos.mealType.length > 0
             ? ` (${datos.mealType.join(', ')})`
             : '';
-        this.altImagen = ${this.titulo}, plato de cocina ${this.campoCocina}${tipoComida};
+        this.altImagen = `${this.titulo}, plato de cocina ${this.campoCocina}${tipoComida}`;
     }
 }
