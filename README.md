@@ -38,7 +38,7 @@ Elegimos una **temática gastronómica cálida y cercana**, que evoca la cocina 
 ## 📄 Páginas del Sitio
 
 * **`index.html` (Inicio):** Muestra la galería de recetas obtenidas de la API en formato de tarjetas (*cards*), con un buscador en tiempo real y manejo de estados (carga y error).
-* **`contact.html` (Contacto):** Formulario de contacto con validaciones hechas en JavaScript (longitud de campos, email, teléfono, etc.) y diseño adaptado.
+* **`contacto.html` (Contacto):** Formulario de contacto con validaciones hechas en JavaScript (longitud de campos, email, teléfono, etc.) y diseño adaptado.
 * **`about.html` (Nosotros):** Presentación del equipo de trabajo, los roles, los detalles del proyecto y la API utilizada.
 
 *Nota: Las tres páginas comparten la misma barra de navegación y el pie de página.*
@@ -55,9 +55,10 @@ Elegimos una **temática gastronómica cálida y cercana**, que evoca la cocina 
 ---
 ## 🗂️ Estructura de carpetas
 
+```
 TP-Dise-o-Web/
 ├── index.html
-├── contact.html
+├── contacto.html
 ├── about.html
 ├── README.md
 ├── css/
@@ -74,6 +75,70 @@ TP-Dise-o-Web/
     ├── Receta.js       # Clase para estructurar los datos de las recetas
     ├── dibujar.js      # Se encarga de escribir y actualizar el DOM
     └── contacto.js     # Validaciones del formulario
+```
+
+---
+## 🌐 API utilizada: DummyJSON Recipes
+
+API pública y gratuita que **no requiere registro ni clave**. Devuelve recetas con foto real del plato y varios datos por receta.
+
+### Endpoints
+
+| Uso | Endpoint |
+| :-- | :-- |
+| Carga inicial (12 recetas) | `https://dummyjson.com/recipes?limit=12` |
+| Búsqueda por nombre | `https://dummyjson.com/recipes/search?q=TEXTO&limit=12` |
+
+Se hace **un solo `fetch`** por carga o por búsqueda: cada receta ya trae su imagen y sus datos.
+
+### Estructura de la respuesta
+
+La lista de recetas **no viene directa**: llega dentro de la propiedad `recipes`.
+
+```json
+{
+  "recipes": [ { ... }, { ... } ],
+  "total": 50,
+  "skip": 0,
+  "limit": 12
+}
+```
+
+### Ejemplo de una receta (abreviado)
+
+```json
+{
+  "id": 1,
+  "name": "Classic Margherita Pizza",
+  "image": "https://cdn.dummyjson.com/recipe-images/1.webp",
+  "cuisine": "Italian",
+  "difficulty": "Easy",
+  "prepTimeMinutes": 20,
+  "cookTimeMinutes": 15,
+  "servings": 4,
+  "rating": 4.6,
+  "mealType": ["Dinner"],
+  "tags": ["Pizza", "Italian"],
+  "ingredients": ["Pizza dough", "Tomato sauce", "..."],
+  "instructions": ["Preheat the oven to 475°F (245°C).", "..."]
+}
+```
+
+### Campos que usamos y cómo los mostramos
+
+La clase `Receta` (`JS/Receta.js`) se queda solo con los campos que mostramos y les pone nombres propios:
+
+| Campo de la API | Propiedad en `Receta` | Dónde se ve en la card |
+| :-- | :-- | :-- |
+| `image` | `imagen` | Foto del plato |
+| `name` | `titulo` | Título principal |
+| `cuisine` | `campoCocina` | Primer campo (tipo de cocina) |
+| `difficulty` + `prepTimeMinutes` + `rating` | `campoDetalle` | Segundo campo, por ejemplo: `Easy · Prep: 20 min · ⭐ 4.6` |
+| `name` + `cuisine` + `mealType` | `altImagen` | Texto alternativo (`alt`) de la foto |
+
+Si la API no manda `name` o `cuisine`, se muestra un texto de reserva (`Receta sin nombre` / `Internacional`).
+
+---
 ## 🔌 Funcionamiento de la API, JavaScript y Validaciones
 
 Para este proyecto decidimos estructurar el código en **Módulos de JavaScript** (`ES Modules`) para mantener todo ordenado y separar responsabilidades:
